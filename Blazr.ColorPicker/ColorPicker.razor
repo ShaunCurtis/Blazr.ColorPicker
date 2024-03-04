@@ -67,9 +67,7 @@
     }
 
     private void Show()
-    {
-        _show = true;
-    }
+        => _show = true;
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
@@ -78,10 +76,7 @@
     }
 
     private void KeyDown(KeyboardEventArgs e)
-    {
-        if (e.Key == "Escape")
-            _show = false;
-    }
+        => _show = !e.Key.Equals("Escape");
 
     private void ColorClick(string color)
     {
@@ -90,7 +85,5 @@
     }
 
     private void Close()
-    {
-        _show = false;
-    }
+        => _show = false;
 }
