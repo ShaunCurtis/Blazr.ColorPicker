@@ -1,0 +1,37 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+@foreach (var picker in _pickers)
+{
+    <label>@picker.Title</label>
+    <ColorPicker @bind-Value="picker.Color" ShowColorCodeInButton />
+}
+
+<div class="bg-dark text-white m-2 p-2">
+    @foreach (var picker in _pickers)
+    {
+        <pre>@picker.Title - Color: @picker.Color </pre>
+    }
+
+</div>
+
+@code {
+    private List<ColorPickerData> _pickers = new();
+
+    protected override Task OnInitializedAsync()
+    {
+        _pickers.Add(new() { Title = "Picker 1" });
+        _pickers.Add(new() { Title = "Picker 2" });
+        _pickers.Add(new() { Title = "Picker 3" });
+        return Task.CompletedTask;
+    }
+
+    public class ColorPickerData
+    {
+        public string Title { get; set; } = "Color Picker";
+        public string Color { get; set; } = "#XX0000";
+    }
+}

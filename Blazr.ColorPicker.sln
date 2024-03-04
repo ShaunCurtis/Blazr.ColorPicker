@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazr.ColorPicker", "Blazr.ColorPicker\Blazr.ColorPicker.csproj", "{DA892F73-2A8B-46A5-B2A2-080428CD1563}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazr.ColorPicker.Demo", "Blazr.ColorPicker.Demo\Blazr.ColorPicker.Demo.csproj", "{420DADC2-34C1-49AB-BFFB-345D095C0141}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A87FB041-9DF8-46EF-92ED-4CBE9A938EA7}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA892F73-2A8B-46A5-B2A2-080428CD1563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA892F73-2A8B-46A5-B2A2-080428CD1563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA892F73-2A8B-46A5-B2A2-080428CD1563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA892F73-2A8B-46A5-B2A2-080428CD1563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{420DADC2-34C1-49AB-BFFB-345D095C0141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{420DADC2-34C1-49AB-BFFB-345D095C0141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{420DADC2-34C1-49AB-BFFB-345D095C0141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{420DADC2-34C1-49AB-BFFB-345D095C0141}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C78C42B9-BBA7-4AC4-A573-AEDDE32BC1CD}
+	EndGlobalSection
+EndGlobal

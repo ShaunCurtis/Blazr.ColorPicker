@@ -1,0 +1,96 @@
+﻿@inherits InputBase<string>
+@using System.Diagnostics.CodeAnalysis;
+@using System.Globalization;
+@using  Microsoft.AspNetCore.Components.Forms
+
+<button class="@this.ButtonCss" style="background-color:@this.Value; color:@_textColor;" @onclick="this.Show">
+@if(this.ShowColorCodeInButton)
+    {
+        <span>@this.Value</span>
+    }
+    &nbsp;
+</button>
+
+<div class="color-picker-modal @_dialogCss"
+     tabindex="0" @onkeydown="@KeyDown" @ref="myPalette">
+    <div class="color-picker-content">
+        <div class="color-picker-body">
+            <div class="color-picker-palette">
+                @foreach (string item in colors)
+                {
+                    <div class="color-picker-case text-center" style="background-color:@item" @onclick="() => ColorClick(item)">
+                        @if (this.Value == item)
+                        {
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" /></svg>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool SetFocus { get; set; }
+    [Parameter] public bool ShowColorCodeInButton { get; set; }
+    [Parameter] public IEnumerable<string>? MyColorPallet { get; set; }
+    [Parameter] public string? ButtonCss { get; set; } = "btn btn-outline-secondary px-4 py-1 me-1";
+
+    private bool _show;
+    private IEnumerable<string> colors => this.MyColorPallet ?? ColorHelper.DefaultPalette;
+    private ElementReference myPalette;
+    private bool _isDarkColor;
+
+    private string _dialogCss => _show ? "color-picker-show" : "color-picker-hide";
+    private string _textColor => _isDarkColor ? "white" : "black";
+
+    protected override void OnParametersSet()
+    {
+        _isDarkColor = false;
+        if(ColorHelper.IsColor(this.Value, out Color color)) 
+            if (color.R < 128 || color.G < 128 || color.B < 128)
+                _isDarkColor = true;
+    }
+
+    protected override bool TryParseValueFromString(string? value, out string? result, [NotNullWhen(false)] out string? validationErrorMessage)
+    {
+        if(ColorHelper.IsColor(value))
+        {
+            result = value;
+            validationErrorMessage = null;
+            return true;
+        }
+        validationErrorMessage = $"The Html Color string is not a valid color.";
+        result = "#000000";
+        return false;
+    }
+
+    private void Show()
+    {
+        _show = true;
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (this.SetFocus)
+            await myPalette.FocusAsync();
+    }
+
+    private void KeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Escape")
+            _show = false;
+    }
+
+    private void ColorClick(string color)
+    {
+        ValueChanged.InvokeAsync(color);
+        _show = false;
+    }
+
+    private void Close()
+    {
+        _show = false;
+    }
+}
